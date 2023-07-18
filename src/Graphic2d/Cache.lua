@@ -6,8 +6,8 @@ function Cache.new()
     local self  = setmetatable({}, Cache);
     self._cache = {};
 
-    self.active = 0;
-    self.inUse  = 0;
+    self.pooled = 0;
+    self.active  = 0;
     self.stored = 0;
 
     return self;
@@ -19,10 +19,10 @@ function Cache:Get(className:string)
     local ins = next(set);
     if not ins then
         ins = Instance.new(className);
-        self.active += 1;
+        self.pooled += 1;
     end
 
-    self.inUse  += 1;
+    self.active += 1;
     self.stored -= 1;
 
     rawset(set, ins, nil);
@@ -37,7 +37,7 @@ function Cache:Initialize(className:string, amount:number)
         rawset(set, ins, true)
     end
 
-    self.active += amount;
+    self.pooled += amount;
     self.stored += amount;
 end
 
@@ -45,7 +45,7 @@ function Cache:Return(ins:Instance)
     local className = ins.ClassName;
     local set = self:_safe_get_set(className);
 
-    self.inUse  -= 1;
+    self.active -= 1;
     self.stored += 1;
 
     ins.Parent = nil;

@@ -67,10 +67,10 @@ function Graphic2d:Clear()
     for ins in next, self.inUse do
         ins.Parent = nil;
     end
-    local active = Cache.active;
+    local pooled = Cache.pooled;
 
-    self.inUse = table.create(active);
-    self.removed = table.create(active);
+    self.inUse = table.create(pooled);
+    self.removed = table.create(pooled);
 end
 
 function Graphic2d:pop()
@@ -83,7 +83,7 @@ function Graphic2d:pop()
         end
     end
     self.removed    = inUse;
-    self.inUse      = table.create(Cache.active);
+    self.inUse      = table.create(Cache.pooled);
 end
 
 function Graphic2d:Destroy()
