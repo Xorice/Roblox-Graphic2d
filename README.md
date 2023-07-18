@@ -59,7 +59,7 @@ end
 ## APIs for Graphic2d
 
 ``` lua
-:SetCanvas(canvas)
+:SetCanvas(canvas): Canvas
 ```
 
 Change a new canvas to draw

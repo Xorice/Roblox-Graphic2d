@@ -58,7 +58,7 @@ end
 ## APIs for Graphic2d
 
 ``` lua
-:SetCanvas(canvas)
+:SetCanvas(canvas): Canvas
 ```
 
 切换用来绘制的 Canvas
