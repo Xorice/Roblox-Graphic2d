@@ -29,7 +29,7 @@ local Maid  = require(script:WaitForChild "Maid");
 local Cache = require(script:WaitForChild "Cache");
 
 local Canvas;
-local EMPTY;
+local EMPTY = {};
 ----------------------------------------
 -- OBJECT
 
