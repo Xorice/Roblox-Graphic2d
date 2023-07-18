@@ -7,6 +7,11 @@ A Tool for drawing GUI in scripts
 1. Auto manage Instance cache
 2. Layered Drawing
 
+## Attention
+
+* Note: This lib does not support creating GUIs with connections.
+Otherwise, it will cause an error
+
 ## Why Use Graphic2d
 
 * Better management of GUI

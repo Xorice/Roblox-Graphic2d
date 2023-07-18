@@ -7,6 +7,10 @@
 1. 自动管理 Instance 缓存
 2. 分层绘制
 
+## 注意事项
+
+* 注：本lib不支持创建带有connection的gui. 否则会引起错误
+
 ## 为什么使用 Graphic2d
 
 * 更好地管理 GUI
