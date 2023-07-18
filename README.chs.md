@@ -120,15 +120,16 @@ local Frame = Graphic:Draw "Frame"
     Size = UDim2.fromScale(0.5,0.5);
 }
 :GetInstance()
+-- * Example: Getting the Canvas
+local Canvas = Graphic:Draw "Frame"
+:SetProperties {
+    AnchorPoint = Vector2.new(0.5, 0.5);
+    Position = UDim2.fromScale(0.5, 0.5);
+    Size = UDim2.fromScale(0.5,0.5);
+}
 ```
 
 获取 `刚由 Canvas 绘制` 的 Instance
-
-``` lua
-:GetCanvas(): Canvas
-```
-
-获取刚绘制的 Canvas
 
 ``` lua
 :SetProperties(config:{[string]:any})

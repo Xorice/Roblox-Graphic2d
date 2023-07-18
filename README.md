@@ -121,15 +121,16 @@ local Frame = Graphic:Draw "Frame"
     Size = UDim2.fromScale(0.5,0.5);
 }
 :GetInstance()
+-- * Example: Getting the Canvas
+local Canvas = Graphic:Draw "Frame"
+:SetProperties {
+    AnchorPoint = Vector2.new(0.5, 0.5);
+    Position = UDim2.fromScale(0.5, 0.5);
+    Size = UDim2.fromScale(0.5,0.5);
+}
 ```
 
 Getting the instance of the `Canvas` drew above
-
-``` lua
-:GetCanvas(): Canvas
-```
-
-Getting the canvas last drew
 
 ``` lua
 :SetProperties(config:{[string]:any})

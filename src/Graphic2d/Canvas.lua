@@ -26,10 +26,6 @@ return function(Graphic2d)
         return self.ins
     end
 
-    function Canvas:GetCanvas()
-        return self
-    end
-
     function Canvas:Draw(className:string)
         return Graphic2d:Draw(className, (Graphic2d.CURRENT_CANVAS or EMPTY).ins)
     end
