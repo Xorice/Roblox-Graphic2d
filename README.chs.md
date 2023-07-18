@@ -1,23 +1,23 @@
 # Graphic2d for Roblox
 
-A Tool for drawing GUI in scripts
+一个在脚本里绘制 GUI 的工具
 
-## Main Features
+## 主要功能
 
-1. Auto manage Instance cache
-2. Layered Drawing
+1. 自动管理 Instance 缓存
+2. 分层绘制
 
-## Why Use Graphic2d
+## 为什么使用 Graphic2d
 
-* Better management of GUI
-* Better performance
-* Better design of GUI fx
+* 更好地管理 GUI
+* 更高的性能表现
+* 更好地让你设计 GUI 东西
 
-All instances created inside have cache management
+所有在这里创建的 Instance 都有缓存管理
 
-So you don't have to worry about the Memory leak
+因此你不必担心内存泄漏的问题
 
-## Basic Usage Example
+## 基础使用示例
 
 ``` lua
 local Graphic = Graphic2d.new(UI);
@@ -49,7 +49,7 @@ function state:draw()
 end
 ```
 
-* The `Canvas` refers to a manager that contains the created instance. Not a `Regular Canvas`
+* 这里的 `Canvas` 指的是一个包含所创建 Instance 的管理器. 并不是 `真正意义上的 Canvas`
 
 ## APIs for Graphic2d
 
@@ -57,35 +57,35 @@ end
 :SetCanvas(canvas)
 ```
 
-Change a new canvas to draw
+切换用来绘制的 Canvas
 
-* Specially, returning to the DEFAULT layer without passing the `target canvas`
+* 特别地, 如果没有传递 `目标 canvas` 的话会切换到默认层
 
 ``` lua
 :Draw(className:string, path:Instance?): Canvas
 ```
 
-Draw an Instance (`any`)
+绘制一个 Instance (`any`)
 
 ``` lua
 :Clear()
 ```
 
-Clear everything
+清除画布
 
 ``` lua
 :pop()
 ```
 
-Renders the drawn content onto the screen
+将结果绘制到屏幕上
 
-* Remember to call it when render event ended
+* 记得在绘制事件结束的时候调用它
 
 ``` lua
 :Destroy()
 ```
 
-Destroy the object
+删除对象
 
 ## API for Canvas
 
@@ -93,15 +93,15 @@ Destroy the object
 :Draw(className:string): Canvas
 ```
 
-Draw an Instance (`any`)
+绘制一个 Instance (`any`)
 
 ``` lua
 :RenderTo(className:string): Canvas
 ```
 
-Draw an Instance. (`any`)
+绘制一个 Instance. (`any`)
 
-* Any drawing after this will be placed under the instance it create
+* 在这后面任何的绘制都会放在它所创建的实例之下
 
 ``` lua
 :GetInstance(): Instance
@@ -118,16 +118,16 @@ local Frame = Graphic:Draw "Frame"
 :GetInstance()
 ```
 
-Getting the instance of the `Canvas` drew above
+获取 `刚由 Canvas 绘制` 的 Instance
 
 ``` lua
 :GetCanvas(): Canvas
 ```
 
-Getting the canvas last drew
+获取刚绘制的 Canvas
 
 ``` lua
 :SetProperties(config:{[string]:any})
 ```
 
-Editing the instance created from last canvas
+编辑 Canvas 所创建的实例
