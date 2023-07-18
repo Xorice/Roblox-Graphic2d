@@ -29,6 +29,7 @@ local Maid  = require(script:WaitForChild "Maid");
 local Cache = require(script:WaitForChild "Cache");
 
 local Canvas;
+local EMPTY;
 ----------------------------------------
 -- OBJECT
 
@@ -52,12 +53,14 @@ end
 
 function Graphic2d:SetCanvas(canvas)
     self.CURRENT_CANVAS = canvas;
+    return Canvas
 end
 
 function Graphic2d:Draw(className:string, path:Instance?)
-    local canvas = Canvas(className);
+    local canvas    = Canvas(className);
+    local PATH      = path or (self.CURRENT_CANVAS or EMPTY).ins or self.Path
 
-    canvas.ins.Parent = path or self.Path;
+    canvas.ins.Parent = PATH;
     self.inUse[canvas.ins] = true;
 
     return canvas;
