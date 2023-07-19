@@ -58,7 +58,9 @@ function Cache:Destroy()
             ins:Destroy()
         end
     end
+    table.clear(self._cache)
 end
+Cache.Cleanup = Cache.Destroy;
 
 function Cache:_safe_get_set(className:string)
     local set = self._cache[className];
@@ -69,4 +71,4 @@ function Cache:_safe_get_set(className:string)
     return set;
 end
 
-return Cache.new()
+return Cache

@@ -38,7 +38,7 @@ Graphic2d.__index = Graphic2d;
 
 function Graphic2d.new(path:Instance)
     local self = setmetatable({}, Graphic2d);
-    self.Cache          = Cache;
+    self.Cache          = Cache.new();
     self.Maid           = Maid.new();
     self.Path           = path;
     self.CURRENT_CANVAS = nil;
@@ -47,7 +47,7 @@ function Graphic2d.new(path:Instance)
     self.removed    = {};
 
     Canvas = require(script:WaitForChild "Canvas")(self)
-    self.Maid:GiveTask(Cache);
+    self.Maid:GiveTask(self.Cache);
     return self
 end
 
@@ -70,7 +70,7 @@ function Graphic2d:Clear()
     for ins in next, self.inUse do
         ins.Parent = nil;
     end
-    local pooled = Cache.pooled;
+    local pooled = self.Cache.pooled;
 
     self.inUse = table.create(pooled);
     self.removed = table.create(pooled);
@@ -86,12 +86,16 @@ function Graphic2d:pop()
         end
     end
     self.removed    = inUse;
-    self.inUse      = table.create(Cache.pooled);
+    self.inUse      = table.create(self.Cache.pooled);
 end
 
 function Graphic2d:Destroy()
     self.CURRENT_CANVAS = nil;
     self.Maid:DoCleaning()
+end
+
+function Graphic2d:ClearCache()
+    self.Cache:Cleanup()
 end
 
 return Graphic2d;
