@@ -33,13 +33,21 @@ function state:draw()
     local t = self.time
     local pos = UDim2.fromScale(math.cos(t)*0.1 + 0.5, math.sin(t)*0.1 + 0.5);
 
-    Graphic:Draw "Frame"
+    local canvas1 = Graphic:Draw "Frame"
     :SetProperties {
         AnchorPoint = Vector2.new(0.5, 0.5);
         Position = UDim2.fromScale(0.5, 0.5);
         Size = UDim2.fromScale(0.5,0.5);
+    };
+    
+    canvas1:RenderTo "Frame"
+    :SetProperties {
+        Size = UDim2.fromScale(0.6,0.6);
+        AnchorPoint = Vector2.new(1,1);
+        Position = UDim2.fromScale(1,1);
     }
-    :RenderTo "Frame"
+    
+    canvas1:RenderTo "Frame"
     :SetProperties {
         Size = UDim2.fromScale(0.5,0.5);
     }
