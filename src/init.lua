@@ -53,7 +53,7 @@ end
 
 function Graphic2d:SetCanvas(canvas)
     self.CURRENT_CANVAS = canvas;
-    return Canvas
+    return canvas
 end
 
 function Graphic2d:Draw(className:string, path:Instance?)
