@@ -11,6 +11,7 @@ A Tool for drawing GUI in scripts
 
 * Note: This lib does not support creating GUIs with connections.
 Otherwise, it will cause an error
+* Every canvas's properties must be initialized every time cuz the cache
 
 ## Why Use Graphic2d
 
