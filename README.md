@@ -87,6 +87,12 @@ Draw an Instance (`any`)
 Clear everything
 
 ``` lua
+:ClearCache()
+```
+
+Clear Instance cache
+
+``` lua
 :pop()
 ```
 

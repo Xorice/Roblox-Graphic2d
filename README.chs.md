@@ -87,6 +87,12 @@ end
 清除画布
 
 ``` lua
+:ClearCache()
+```
+
+清除 Instance 缓存
+
+``` lua
 :pop()
 ```
 
