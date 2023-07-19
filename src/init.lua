@@ -89,6 +89,18 @@ function Graphic2d:pop()
     self.inUse      = table.create(self.Cache.pooled);
 end
 
+function Graphic2d:_remove_instance(ins)
+    local inUse     = self.inUse;
+    local removed   = self.removed;
+
+    if inUse[ins] then
+        ins.Parent = nil;
+
+        rawset(inUse, ins, nil)
+        rawset(removed, ins, true)
+    end
+end
+
 function Graphic2d:Destroy()
     self.CURRENT_CANVAS = nil;
     self.Maid:DoCleaning()

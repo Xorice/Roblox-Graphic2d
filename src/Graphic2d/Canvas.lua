@@ -30,6 +30,13 @@ return function(Graphic2d)
         return Graphic2d:Draw(className, (Graphic2d.CURRENT_CANVAS or EMPTY).ins)
     end
 
+    function Canvas:Clear()
+        for _, v in next, self.ins:GetDescendants() do
+            Graphic2d:_remove_instance(v)
+        end
+        return self
+    end
+
     function Canvas:RenderTo(className:string)
         local canvas = Graphic2d:Draw(className, self.ins)
         Graphic2d.CURRENT_CANVAS = canvas

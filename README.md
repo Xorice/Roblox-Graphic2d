@@ -115,6 +115,12 @@ Destroy the object
 Draw an Instance (`any`)
 
 ``` lua
+:Clear(): Canvas
+```
+
+Clear the canvas
+
+``` lua
 :RenderTo(className:string): Canvas
 ```
 

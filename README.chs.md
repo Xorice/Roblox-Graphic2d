@@ -115,6 +115,12 @@ end
 绘制一个 Instance (`any`)
 
 ``` lua
+:Clear(): Canvas
+```
+
+清空画布
+
+``` lua
 :RenderTo(className:string): Canvas
 ```
 
