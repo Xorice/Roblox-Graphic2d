@@ -32,35 +32,41 @@ local function draw()
 	local pos2 = UDim2.fromOffset(math.cos(t)*10, math.sin(t)*10)
 
 	local canvas1 = Graphic:Draw "Frame"
-	:SetProperties {
-		AnchorPoint = Vector2.new(0.5, 0.5);
-		Position = UDim2.fromScale(0.5, 0.5);
-		Size = UDim2.fromScale(0.5,0.5);
-		BackgroundTransparency = 0.5
-	};
-	
-	local canvas2 = Graphic:SetCanvas(canvas1)
-	:Draw "TextLabel"
-	:SetProperties {
-		AnchorPoint = Vector2.new(0.5, 0.5);
-		Position = pos;
-		Text = "Hello Graphic2d!"
-	}
-	
-	for i = 1, 10 do
-		canvas2 = canvas2:RenderTo "TextLabel"
 		:SetProperties {
 			AnchorPoint = Vector2.new(0.5, 0.5);
-			Position = pos2;
+			Position = UDim2.fromScale(0.5, 0.5);
+			Size = UDim2.fromScale(0.5,0.5);
+			BackgroundTransparency = 0.5
+		};
+
+	local canvas2 = Graphic:SetCanvas(canvas1)
+		:Draw "TextLabel"
+		:SetProperties {
+			AnchorPoint = Vector2.new(0.5, 0.5);
+			Position = pos;
 			Text = "Hello Graphic2d!";
-			Rotation = os.clock()*10;
+			
+			Rotation = 0; -- initialize
 		}
+
+	for i = 1, 10 do
+		canvas2 = canvas2:RenderTo "TextLabel"
+			:SetProperties {
+				AnchorPoint = Vector2.new(0.5, 0.5);
+				Position = pos2;
+				Text = "Hello Graphic2d!";
+				Rotation = os.clock()*10;
+			}
 	end
-	
+
 	canvas1:RenderTo "Frame"
-	:SetProperties {
-		Size = UDim2.fromScale(0.4,0.4);
-	}
+		:SetProperties {
+			Size = UDim2.fromScale(0.4,0.4);
+			
+			AnchorPoint = Vector2.new(0, 0); -- initialize
+			Position = UDim2.fromScale(0, 0); -- initialize
+			BackgroundTransparency = 0.0; -- initialize
+		}
 
 	Graphic:pop()
 end

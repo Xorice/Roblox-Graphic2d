@@ -12,7 +12,7 @@ local Graphic2d = require(ReplicatedStorage:WaitForChild "Graphic2d")
 
 -- * make sure the playergui was loaded
 while not Players.LocalPlayer:FindFirstChild "PlayerGui" do
-    task.wait()
+	task.wait()
 end
 
 -- * Create a ScreenGui as a base path
@@ -25,37 +25,39 @@ UI.Parent = game:GetService "Players".LocalPlayer.PlayerGui;
 local Graphic = Graphic2d.new(UI);
 
 local function draw()
-    Graphic:SetCanvas()
+	Graphic:SetCanvas()
 
-    local t = os.clock()
+	local t = os.clock()
 	local pos = UDim2.fromScale(math.cos(t)*0.1 + 0.5, math.sin(t)*0.1 + 0.5);
 
 	local canvas1 = Graphic:Draw "Frame"
-	:SetProperties {
-		AnchorPoint = Vector2.new(0.5, 0.5);
-		Position = UDim2.fromScale(0.5, 0.5);
-		Size = UDim2.fromScale(0.5,0.5);
-	};
+		:SetProperties {
+			AnchorPoint = Vector2.new(0.5, 0.5);
+			Position = UDim2.fromScale(0.5, 0.5);
+			Size = UDim2.fromScale(0.5,0.5);
+		};
 
 	canvas1:RenderTo "Frame"
-	:SetProperties {
-		Size = UDim2.fromScale(0.6,0.6);
-		AnchorPoint = Vector2.new(1,1);
-		Position = UDim2.fromScale(1,1);
-	}
+		:SetProperties {
+			Size = UDim2.fromScale(0.6,0.6);
+			AnchorPoint = Vector2.new(1,1);
+			Position = UDim2.fromScale(1,1);
+		}
 
 	canvas1:RenderTo "Frame"
-	:SetProperties {
-		Size = UDim2.fromScale(0.5,0.5);
-	}
-	:Draw "TextLabel"
-	:SetProperties {
-		AnchorPoint = Vector2.new(0.5, 0.5);
-		Position = pos;
-		Text = "Hello Graphic2d!"
-	}
+		:SetProperties {
+			Size = UDim2.fromScale(0.5,0.5);
+			AnchorPoint = Vector2.new(0,0);		-- initialize
+			Position = UDim2.fromScale(0,0);	-- initialize
+		}
+		:Draw "TextLabel"
+		:SetProperties {
+			AnchorPoint = Vector2.new(0.5, 0.5);
+			Position = pos;
+			Text = "Hello Graphic2d!"
+		}
 
-    Graphic:pop()
+	Graphic:pop()
 end
 
 RunService.RenderStepped:Connect(draw)

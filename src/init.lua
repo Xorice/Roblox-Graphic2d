@@ -67,8 +67,9 @@ function Graphic2d:Draw(className:string, path:Instance?)
 end
 
 function Graphic2d:Clear()
+    local cache = rawget(self, "Cache");
     for ins in next, self.inUse do
-        ins.Parent = nil;
+        cache:Return(ins);
     end
     local pooled = self.Cache.pooled;
 
@@ -80,9 +81,10 @@ function Graphic2d:pop()
     local inUse     = self.inUse;
     local removed   = self.removed;
 
+    local cache = rawget(self, "Cache");
     for ins in next, removed do
         if not inUse[ins] then
-            ins.Parent = nil;
+            cache:Return(ins);
         end
     end
     self.removed    = inUse;
@@ -93,8 +95,9 @@ function Graphic2d:_remove_instance(ins)
     local inUse     = self.inUse;
     local removed   = self.removed;
 
+    local cache = rawget(self, "Cache");
     if inUse[ins] then
-        ins.Parent = nil;
+        cache:Return(ins);
 
         rawset(inUse, ins, nil)
         rawset(removed, ins, true)
