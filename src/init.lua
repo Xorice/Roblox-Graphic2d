@@ -30,6 +30,7 @@ local Cache = require(script:WaitForChild "Cache");
 
 local Canvas;
 local EMPTY = {};
+local INITIALIZAE_MAP = {};
 ----------------------------------------
 -- OBJECT
 
@@ -102,6 +103,23 @@ function Graphic2d:_remove_instance(ins)
         rawset(inUse, ins, nil)
         rawset(removed, ins, true)
     end
+end
+
+function Graphic2d:_get_initialize_map(ins:Instance)
+    local class = ins.ClassName;
+    return INITIALIZAE_MAP[class] or EMPTY;
+end
+
+function Graphic2d:_record_property(ins:Instance, name)
+    local class = ins.ClassName;
+    local class_set = INITIALIZAE_MAP[class];
+    if not class_set then
+        class_set = {};
+        INITIALIZAE_MAP[class] = class_set;
+    end
+    if class_set[name] then return end; -- * return if already recorded yet
+
+    class_set[name] = ins[name];
 end
 
 function Graphic2d:Destroy()

@@ -16,7 +16,12 @@ return function(Graphic2d)
 
     function Canvas:SetProperties(config)
         local ins = self.ins;
+        for i, v in next, Graphic2d:_get_initialize_map(ins) do
+            if config[i] then continue end
+            ins[i] = v;
+        end
         for i, v in next, config do
+            Graphic2d:_record_property(ins, i) -- * record the original value
             ins[i] = v;
         end
         return self
