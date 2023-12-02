@@ -187,7 +187,7 @@ MyTextLabel.Text = "I'm Free"
 
 Separate the `Canvas` from Drawing Cycle as an `Instance`
 
-* The Forzen canvas won't be clear by Graphic2d anymore. So this behaviour may lead to `Memory Leak`
+* The Forzen canvas won't be cleard by Graphic2d anymore. So this behaviour may lead to `Memory Leak`
 
 * You can't freeze a Canvas that isn't using.
 
