@@ -34,27 +34,27 @@ function state:draw()
     local pos = UDim2.fromScale(math.cos(t)*0.1 + 0.5, math.sin(t)*0.1 + 0.5);
 
     local canvas1 = Graphic:Draw "Frame"
-        :SetProperties {
+        {
             AnchorPoint = Vector2.new(0.5, 0.5);
             Position = UDim2.fromScale(0.5, 0.5);
             Size = UDim2.fromScale(0.5,0.5);
         };
 
     canvas1:RenderTo "Frame"
-        :SetProperties {
+        {
             Size = UDim2.fromScale(0.6,0.6);
             AnchorPoint = Vector2.new(1,1);
             Position = UDim2.fromScale(1,1);
         }
 
     canvas1:RenderTo "Frame"
-        :SetProperties {
+        {
             Size = UDim2.fromScale(0.5,0.5);
             AnchorPoint = Vector2.new(0,0);     -- initialize
             Position = UDim2.fromScale(0,0);    -- initialize
         }
         :Draw "TextLabel"
-        :SetProperties {
+        {
             AnchorPoint = Vector2.new(0.5, 0.5);
             Position = pos;
             Text = "Hello Graphic2d!"
@@ -160,6 +160,12 @@ local Canvas = Graphic:Draw "Frame"
 
 ``` lua
 :SetProperties(config:{[string]:any})
+```
+
+```lua
+-- * 你可以直接像这样省略 `:SetProperties`
+local Canvas = Graphic:Draw "Frame" 
+{...}
 ```
 
 编辑 Canvas 所创建的实例

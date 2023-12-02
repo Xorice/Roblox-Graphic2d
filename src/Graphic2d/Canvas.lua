@@ -26,6 +26,7 @@ return function(Graphic2d)
         end
         return self
     end
+    Canvas.__call = Canvas.SetProperties;
 
     function Canvas:GetInstance()
         return self.ins
