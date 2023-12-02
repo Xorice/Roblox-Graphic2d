@@ -59,6 +59,10 @@ function Cache:Destroy()
         end
     end
     table.clear(self._cache)
+
+    self.pooled = 0;
+    self.active  = 0;
+    self.stored = 0;
 end
 Cache.Cleanup = Cache.Destroy;
 

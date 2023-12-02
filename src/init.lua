@@ -31,9 +31,9 @@ local Cache = require(script:WaitForChild "Cache");
 local Canvas;
 local EMPTY = {};
 local INITIALIZAE_MAP = {};
+
 ----------------------------------------
 -- OBJECT
-
 local Graphic2d = {};
 Graphic2d.__index = Graphic2d;
 
@@ -105,6 +105,14 @@ function Graphic2d:_remove_instance(ins)
     end
 end
 
+function Graphic2d:_pop_instance(ins) -- <> This behaviour may lead to Memory Leak
+    local inUse     = self.inUse;
+    local removed   = self.removed;
+
+    rawset(inUse, ins, nil);
+    rawset(removed, ins, nil);
+end
+
 function Graphic2d:_get_initialize_map(ins:Instance)
     local class = ins.ClassName;
     return INITIALIZAE_MAP[class] or EMPTY;
@@ -129,6 +137,7 @@ end
 
 function Graphic2d:ClearCache()
     self.Cache:Cleanup()
+    INITIALIZAE_MAP = {}; -- * Clear Redundant memory
 end
 
 return Graphic2d;

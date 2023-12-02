@@ -42,6 +42,15 @@ return function(Graphic2d)
         return self
     end
 
+    function Canvas:Freeze()
+        local ins = self.ins :: Instance;
+        Graphic2d:_pop_instance(ins)
+        for _, v in next, ins:GetDescendants() do
+            Graphic2d:_pop_instance(v);
+        end
+        return ins;
+    end
+
     function Canvas:RenderTo(className:string)
         local canvas = Graphic2d:Draw(className, self.ins)
         Graphic2d.CURRENT_CANVAS = canvas

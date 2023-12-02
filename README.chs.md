@@ -9,7 +9,7 @@
 
 ## 注意事项
 
-* 注：本lib不支持创建带有connection的gui. 否则会引起错误
+* 注：本lib不支持创建带有 connection 的 gui. 否则会引起错误
 * 每个画布的属性每次都需要初始化，因为有缓存
 
 ## 为什么使用 Graphic2d
@@ -94,6 +94,8 @@ end
 
 清除 Instance 缓存
 
+* 建议切换游戏状态的时候调用它
+
 ``` lua
 :pop()
 ```
@@ -135,7 +137,7 @@ end
 ```
 
 ``` lua
--- * Example: Getting the created instance
+-- * 例: 获取所创建的实例
 local Frame = Graphic:Draw "Frame"
 :SetProperties {
     AnchorPoint = Vector2.new(0.5, 0.5);
@@ -143,7 +145,9 @@ local Frame = Graphic:Draw "Frame"
     Size = UDim2.fromScale(0.5,0.5);
 }
 :GetInstance()
--- * Example: Getting the Canvas
+print(Frame.AnchorPoint); --> (0.5, 0.5)
+
+-- * 例：获取所绘制的画布
 local Canvas = Graphic:Draw "Frame"
 :SetProperties {
     AnchorPoint = Vector2.new(0.5, 0.5);
@@ -159,3 +163,31 @@ local Canvas = Graphic:Draw "Frame"
 ```
 
 编辑 Canvas 所创建的实例
+
+``` lua
+:Freeze(): Instance
+```
+
+```lua
+-- * 例：通过 Graphic2d 来创建一个 TextLabel
+Graphic:SetCanvas()
+local MyTextLabel :TextLabel = Graphic:Draw "TextLabel"
+    :SetProperties {
+        AnchorPoint = Vector2.new(0.5, 0.5);
+        Size = UDim2.fromOffset(300, 100);
+        Position = UDim2.fromScale(.5, .5);
+        Text = "Hello There";
+        ZIndex = 10;
+    }
+    :Freeze();
+Graphic:pop()
+MyTextLabel.Text = "I'm Free"
+```
+
+将该 `Canvas` 作为一个 `实例` 从绘制循环中分离出来
+
+* Graphic2d 将不再清除冻结之后的画布. 因此, 这种行为可能导致 `内存泄漏`
+
+* 你不能冻结一个没在使用的画布
+
+* 画布下面的任何实例都会被自动冻结

@@ -95,6 +95,8 @@ Clear everything
 
 Clear Instance cache
 
+* Suggest calling it when changing game state
+
 ``` lua
 :pop()
 ```
@@ -129,7 +131,7 @@ Clear the canvas
 
 Draw an Instance. (`any`)
 
-* Any drawing after this will be placed under the instance it create
+* Any drawing after this will be placed under the instance it created
 
 ``` lua
 :GetInstance(): Instance
@@ -144,6 +146,8 @@ local Frame = Graphic:Draw "Frame"
     Size = UDim2.fromScale(0.5,0.5);
 }
 :GetInstance()
+print(Frame.AnchorPoint); --> (0.5, 0.5)
+
 -- * Example: Getting the Canvas
 local Canvas = Graphic:Draw "Frame"
 :SetProperties {
@@ -160,3 +164,31 @@ Getting the instance of the `Canvas` drew above
 ```
 
 Editing the instance created from last canvas
+
+``` lua
+:Freeze(): Instance
+```
+
+```lua
+-- * Example: Create a TextLabel via Graphic2d
+Graphic:SetCanvas()
+local MyTextLabel :TextLabel = Graphic:Draw "TextLabel"
+    :SetProperties {
+        AnchorPoint = Vector2.new(0.5, 0.5);
+        Size = UDim2.fromOffset(300, 100);
+        Position = UDim2.fromScale(.5, .5);
+        Text = "Hello There";
+        ZIndex = 10;
+    }
+    :Freeze();
+Graphic:pop()
+MyTextLabel.Text = "I'm Free"
+```
+
+Separate the `Canvas` from Drawing Cycle as an `Instance`
+
+* The Forzen canvas won't be clear by Graphic2d anymore. So this behaviour may lead to `Memory Leak`
+
+* You can't freeze a Canvas that isn't using.
+
+* Every Instances under it will be auto froze
